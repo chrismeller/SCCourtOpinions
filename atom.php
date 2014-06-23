@@ -96,7 +96,13 @@
 		$link = $dom->createElement( 'link' );
 		$link->setAttribute( 'href', $item->url );
 
-		$uuid = hash( 'md5', $item->id );
+		// for orders, the id is not unique, but the URL is
+		if ( $item->type == 'order' ) {
+			$uuid = hash( 'md5', $item->url );
+		}
+		else {
+			$uuid = hash( 'md5', $item->id );
+		}
 		$uuid_hex = uuid_hex( $uuid );
 		$id = $dom->createElement( 'id', 'urn:uuid:' . $uuid_hex );
 
