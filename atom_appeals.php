@@ -6,7 +6,7 @@
 	ini_set('display_errors', true);
 	date_default_timezone_set('UTC');
 
-	$expiration = 21600;		// 6 hours
+	$expiration = 1 * 60 * 60;		// 1 hour
 
 	if ( file_exists( 'cache/atom_appeals.cache' ) ) {
 		$mtime = filemtime( 'cache/atom_appeals.cache' );
