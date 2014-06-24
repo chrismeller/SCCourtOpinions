@@ -38,7 +38,7 @@
 
 	// and the link node
 	$link = $dom->createElement( 'link' );
-	$link->setAttribute( 'href', 'http://www.judicial.state.sc.us/opinions/indexSCPub.cfm' );
+	$link->setAttribute( 'href', SCCourtOpinions\SupremeCourt::BASE_URL );
 
 	// add it to the feed node
 	$feed->appendChild( $link );
