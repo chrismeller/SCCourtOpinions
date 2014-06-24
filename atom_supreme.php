@@ -8,14 +8,16 @@
 
 	$expiration = 21600;		// 6 hours
 
-	if ( file_exists( 'cache/atom.cache' ) ) {
-		$mtime = filemtime( 'cache/atom.cache' );
+	if ( file_exists( 'cache/atom_supreme.cache' ) ) {
+		$mtime = filemtime( 'cache/atom_supreme.cache' );
 		if ( time() < $mtime + $expiration ) {
-			echo file_get_contents( 'cache/atom.cache' );
+			echo file_get_contents( 'cache/atom_supreme.cache' );
 			die();
 		}
 	}
 
+	require('sccourtopinions/opinion.php');
+	require('sccourtopinions/sccourtopinions.php');
 	require('sccourtopinions/supremecourt.php');
 
 	$opinions = SCCourtOpinions\SupremeCourt::factory()->opinions();
@@ -130,7 +132,7 @@
 
 	$xml = $dom->saveXML();
 
-	file_put_contents( 'cache/atom.cache', $xml );
+	file_put_contents( 'cache/atom_supreme.cache', $xml );
 
 	echo $xml;
 
