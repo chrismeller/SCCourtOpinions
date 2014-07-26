@@ -4,7 +4,8 @@
 
 	class AppealsCourt extends SCCourtOpinions {
 
-		const BASE_URL = 'http://www.judicial.state.sc.us/opinions/indexCOAPub.cfm';
+		const PUBLISHED_URL = 'http://www.judicial.state.sc.us/opinions/indexCOAPub.cfm';
+		const UNPUBLISHED_URL = 'http://www.judicial.state.sc.us/opinions/indexCOAUnPub.cfm';
 
 	}
 

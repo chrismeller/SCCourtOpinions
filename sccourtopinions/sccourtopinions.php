@@ -25,7 +25,7 @@
 
 		}
 
-		public function opinions ( $year = null, $month = null ) {
+		public function opinions ( $year = null, $month = null, $unpublished = false ) {
 
 			$now = new \DateTime();
 			if ( $year == null ) {
@@ -36,7 +36,13 @@
 				$month = $now->format('n');
 			}
 
-			$url = static::BASE_URL . '?year=' . $year . '&month=' . $month;
+			// do we want the published or unpublished opinions?
+			if ( $unpublished == false ) {
+				$url = static::PUBLISHED_URL . '?year=' . $year . '&month=' . $month;
+			}
+			else {
+				$url = static::UNPUBLISHED_URL . '?year=' . $year . '&month=' . $month;
+			}
 
 			$contents = file_get_contents( $url );
 
@@ -87,7 +93,10 @@
 					// get the next blockquote in the document, it should be the description for this link
 					$description = $xpath->query( './following::blockquote', $link );
 
-					$opinion->description = trim( $description->item( 0 )->nodeValue );
+					// unpublished opinions don't have a description, so don't include one
+					if ( $description->length > 0 ) {
+						$opinion->description = trim( $description->item( 0 )->nodeValue );
+					}
 
 					$opinions[] = $opinion;
 
