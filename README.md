@@ -9,3 +9,7 @@ How
 Grab the contents, parse it with PHP's [DOM](http://php.net/dom), and spit it out as a rough [Atom](http://en.wikipedia.org/wiki/Atom_(standard)) feed. You can, of course, just get the opinions and spit them out any way you like.
 
 In addition to the Atom feeds, there are also two `export_*` scripts that show a basic usage and simply spit out the result. I recommend running them at the command line (`php export_appeals.php`).
+
+Cache
+-----
+If you're using the Atom feeds, make sure the `cache/` directory is writable by your web server. By default both feeds cache for an hour, you can easily change that at the top of each file.
